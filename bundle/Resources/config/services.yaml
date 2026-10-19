@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Gadget\Oracle\:
+    resource: "../../../src/"
+
+  Gadget\Oracle\Input\LogonOptions:
+    arguments:
+      $username: "%env(default::ORACLE_USER)%"
+      $password: "%env(default::ORACLE_PASS)%"
+      $connectIdentifier: "%env(default::ORACLE_CONN)%"

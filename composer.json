@@ -1,0 +1,53 @@
+{
+  "name": "mjfk23/gadget-oracle",
+  "description": "Gadget Oracle library",
+  "type": "library",
+  "keywords": [],
+  "homepage": "https://github.com/mjfk23/gadget-oracle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Melody Kimball",
+      "role": "lead"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/mjfk23/gadget-oracle/issues",
+    "wiki": "https://github.com/mjfk23/gadget-oracle/wiki",
+    "source": "https://github.com/mjfk23/gadget-oracle"
+  },
+  "require": {
+    "php": "^8.1",
+    "ext-ctype": "*",
+    "ext-iconv": "*",
+    "doctrine/dbal": "^4.2",
+    "mjfk23/gadget-console": "^2.0"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.0",
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpstan/extension-installer": "^1.4",
+    "squizlabs/php_codesniffer": "^3.10"
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true,
+      "php-http/discovery": true
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "apcu-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Gadget\\Oracle\\": [
+        "src/",
+        "bundle/"
+      ]
+    }
+  },
+  "scripts": {
+    "phpcs": "vendor/bin/phpcs",
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+  }
+}

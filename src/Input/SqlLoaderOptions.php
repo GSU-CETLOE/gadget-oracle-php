@@ -311,15 +311,18 @@ final class SqlLoaderOptions extends OracleOptions
             'proxy' => $this->proxy,
         ];
 
-        return parent::createShellArguments(array_map(
-            fn(bool|int|string|null $value, string $key): string|null => match (true) {
-                $value === null => null,
-                $value === true => "{$key}=true",
-                $value === false => "{$key}=false",
-                default => "{$key}={$value}"
-            },
-            $args,
-            array_keys($args)
-        ));
+        return parent::createShellArguments([
+            ...array_map(
+                fn(bool|int|string|null $value, string $key): string|null => match (true) {
+                    $value === null => null,
+                    $value === true => "{$key}=true",
+                    $value === false => "{$key}=false",
+                    default => "{$key}={$value}"
+                },
+                $args,
+                array_keys($args)
+            ),
+            ...$shellArgs
+        ]);
     }
 }

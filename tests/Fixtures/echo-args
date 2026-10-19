@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Stand-in for sqlplus and sqlldr in the command tests. Prints each argument
+ * it receives on its own line, then exits with ECHO_ARGS_EXIT_CODE when that
+ * environment variable is set and 0 otherwise.
+ */
+foreach (array_slice($argv, 1) as $argument) {
+    echo $argument, PHP_EOL;
+}
+
+$exitCode = getenv('ECHO_ARGS_EXIT_CODE');
+exit($exitCode === false ? 0 : (int) $exitCode);

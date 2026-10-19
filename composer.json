@@ -1,53 +1,64 @@
 {
-  "name": "mjfk23/gadget-oracle",
-  "description": "Gadget Oracle library",
+  "name": "gsu-cetloe/gadget-oracle-php",
+  "description": "Gadget library for Oracle Database: Symfony console commands that wrap SQL*Plus and SQL*Loader, a Doctrine DBAL OCI8 driver, and a Symfony bundle",
   "type": "library",
   "keywords": [],
-  "homepage": "https://github.com/mjfk23/gadget-oracle",
+  "homepage": "https://github.com/GSU-CETLOE/gadget-oracle-php",
   "license": "MIT",
   "authors": [
     {
-      "name": "Melody Kimball",
-      "role": "lead"
+      "name": "Jeb Barger",
+      "role": "Application Developer"
     }
   ],
-  "support": {
-    "issues": "https://github.com/mjfk23/gadget-oracle/issues",
-    "wiki": "https://github.com/mjfk23/gadget-oracle/wiki",
-    "source": "https://github.com/mjfk23/gadget-oracle"
-  },
   "require": {
-    "php": "^8.1",
-    "ext-ctype": "*",
-    "ext-iconv": "*",
+    "php": "8.1.*",
     "doctrine/dbal": "^4.2",
-    "mjfk23/gadget-console": "^2.0"
+    "gsu-cetloe/gadget-console-php": "^1.0",
+    "gsu-cetloe/gadget-core-php": "^1.0",
+    "gsu-cetloe/gadget-process-php": "^1.0",
+    "gsu-cetloe/symfony-bundle": "^1.0",
+    "symfony/console": "6.4.*"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.0",
     "phpstan/phpstan-strict-rules": "^2.0",
     "phpstan/extension-installer": "^1.4",
+    "phpunit/phpunit": "^10.5",
     "squizlabs/php_codesniffer": "^3.10"
+  },
+  "suggest": {
+    "ext-oci8": "Needed by Gadget\\Oracle\\Doctrine\\OracleDriver to open database connections"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gadget\\Oracle\\": ["src/", "bundle/"]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gadget\\Oracle\\Tests\\": "tests/"
+    }
   },
   "config": {
     "allow-plugins": {
-      "phpstan/extension-installer": true,
-      "php-http/discovery": true
+      "phpstan/extension-installer": true
+    },
+    "platform": {
+      "php": "8.1.0"
     },
     "sort-packages": true,
     "optimize-autoloader": true,
     "apcu-autoloader": true
   },
-  "autoload": {
-    "psr-4": {
-      "Gadget\\Oracle\\": [
-        "src/",
-        "bundle/"
-      ]
-    }
-  },
   "scripts": {
     "phpcs": "vendor/bin/phpcs",
-    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+    "test": "vendor/bin/phpunit",
+    "check": [
+      "@phpcs",
+      "@phpstan",
+      "@test"
+    ]
   }
 }
